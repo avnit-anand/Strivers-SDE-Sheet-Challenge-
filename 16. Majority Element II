@@ -1,0 +1,30 @@
+------ Approach - 1: Using HashMap. TC => O(N) SC=> O(N) --------------
+import java.io.*;
+import java.util.* ;
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static ArrayList<Integer> majorityElementII(ArrayList<Integer> arr) 
+    {
+        //Create hasmap and store in it.
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int i=0; i<arr.size(); i++){
+            if(map.containsKey(arr.get(i))){
+                map.put(arr.get(i), map.get(arr.get(i)) + 1);
+            }else{
+                map.put( arr.get(i), 1);
+            }
+        }
+
+        ArrayList<Integer> res = new ArrayList();
+        for(Map.Entry<Integer,Integer> i : map.entrySet()){
+            if(i.getValue() > arr.size()/3){
+                res.add(i.getKey());
+            }
+        }
+        return res;
+    }
+}
